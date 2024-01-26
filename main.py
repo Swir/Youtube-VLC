@@ -46,11 +46,7 @@ class VideoDownloader:
 class ProgramGUI:
     def __init__(self, master):
         self.master = master
-<<<<<<< HEAD
-        master.title("Youtube Vlc player by Swir")
-=======
         master.title("Youtube  VLC by Swir 1.0")
->>>>>>> 23f1763eeea353b39ce3be252ab0e310077ca9a5
         master.configure(bg="#f0f0f0")  # Ustawienie koloru tła
         master.geometry("500x250")  # Ustawienie rozmiaru okna
 
