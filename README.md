@@ -1,6 +1,6 @@
 # Youtube VLC
 
-program runs youtube links in vlc player
+program runs youtube links in vlc player youtube
 
 ## You need
 ```
