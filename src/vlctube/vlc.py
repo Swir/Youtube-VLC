@@ -61,9 +61,10 @@ def build_vlc_command(vlc_path: str, stream: ResolvedStream, *, enqueue: bool = 
     if not executable.is_file() and not shutil.which(vlc_path):
         raise FileNotFoundError(f"VLC executable not found: {vlc_path}")
 
-    command = [str(vlc_path), "--one-instance", "--no-video-title-show"]
-    if enqueue:
-        command.append("--playlist-enqueue")
+    # Classic Youtube-VLC always used --playlist-enqueue so launching a URL did
+    # not unexpectedly replace the user's current VLC playlist. Preserve that
+    # behavior for the first item as well as subsequent queue items.
+    command = [str(vlc_path), "--one-instance", "--playlist-enqueue", "--no-video-title-show"]
     if stream.audio_url:
         command.append(f"--input-slave={stream.audio_url}")
     command.append(stream.video_url)
