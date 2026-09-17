@@ -1,12 +1,50 @@
 from __future__ import annotations
 
+from pathlib import PurePosixPath
 from typing import Any
+from urllib.parse import urlsplit
 
 from yt_dlp import YoutubeDL
 
 from .formats import format_selector
 from .models import QueueItem, ResolvedStream
 from .url_tools import normalize_url
+
+DIRECT_MEDIA_SUFFIXES = {
+    ".m3u8",
+    ".mp4",
+    ".webm",
+    ".mkv",
+    ".mov",
+    ".avi",
+    ".ts",
+    ".mp3",
+    ".m4a",
+    ".aac",
+    ".ogg",
+    ".opus",
+    ".flac",
+    ".wav",
+}
+
+
+def is_direct_media_url(url: str) -> bool:
+    source = normalize_url(url)
+    suffix = PurePosixPath(urlsplit(source).path).suffix.lower()
+    return suffix in DIRECT_MEDIA_SUFFIXES
+
+
+def direct_stream(url: str) -> ResolvedStream:
+    source = normalize_url(url)
+    path = PurePosixPath(urlsplit(source).path)
+    title = path.name or "Direct stream"
+    return ResolvedStream(
+        source_url=source,
+        title=title,
+        video_url=source,
+        webpage_url=source,
+        extractor="Direct",
+    )
 
 
 def stream_from_info(source_url: str, info: dict[str, Any]) -> ResolvedStream:
@@ -45,6 +83,12 @@ def stream_from_info(source_url: str, info: dict[str, Any]) -> ResolvedStream:
 
 def resolve_stream(url: str, quality: str = "best") -> ResolvedStream:
     source = normalize_url(url)
+    # The original VLCTube passed non-YouTube/direct media URLs straight to VLC.
+    # Preserve that useful behavior for URLs that clearly identify a media resource,
+    # while keeping yt-dlp resolution for pages and supported services.
+    if is_direct_media_url(source):
+        return direct_stream(source)
+
     options = {
         "quiet": True,
         "no_warnings": True,

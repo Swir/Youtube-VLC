@@ -2,7 +2,7 @@ from vlctube.models import ResolvedStream
 from vlctube.vlc import build_vlc_command
 
 
-def test_build_vlc_command_single_stream(tmp_path):
+def test_build_vlc_command_single_stream_preserves_legacy_enqueue(tmp_path):
     vlc = tmp_path / "vlc.exe"
     vlc.write_bytes(b"")
     stream = ResolvedStream(
@@ -13,6 +13,7 @@ def test_build_vlc_command_single_stream(tmp_path):
     command = build_vlc_command(str(vlc), stream)
     assert command[0] == str(vlc)
     assert "--one-instance" in command
+    assert "--playlist-enqueue" in command
     assert command[-1] == "https://cdn.example/video"
     assert not any(part.startswith("--input-slave=") for part in command)
 

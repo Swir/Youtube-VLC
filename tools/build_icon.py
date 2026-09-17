@@ -5,7 +5,8 @@ from pathlib import Path
 from PIL import Image, ImageDraw
 
 ROOT = Path(__file__).resolve().parents[1]
-OUTPUT = ROOT / "assets" / "vlctube.ico"
+ICO_OUTPUT = ROOT / "assets" / "vlctube.ico"
+PNG_OUTPUT = ROOT / "assets" / "vlctube_icon.png"
 
 
 def build(size: int = 512) -> Image.Image:
@@ -36,14 +37,16 @@ def build(size: int = 512) -> Image.Image:
 
 
 def main() -> None:
-    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+    ICO_OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     image = build()
+    image.save(PNG_OUTPUT, format="PNG")
     image.save(
-        OUTPUT,
+        ICO_OUTPUT,
         format="ICO",
         sizes=[(16, 16), (24, 24), (32, 32), (48, 48), (64, 64), (128, 128), (256, 256)],
     )
-    print(f"Wrote {OUTPUT}")
+    print(f"Wrote {PNG_OUTPUT}")
+    print(f"Wrote {ICO_OUTPUT}")
 
 
 if __name__ == "__main__":
