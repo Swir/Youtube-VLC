@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="VLCTube icon">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#050b14"/>
+      <stop offset="1" stop-color="#0b3154"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#69dcff"/>
+      <stop offset="1" stop-color="#197ed9"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="10" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect x="20" y="20" width="472" height="472" rx="108" fill="url(#bg)"/>
+  <path d="M92 132h328M92 380h328" stroke="#123b60" stroke-width="10" stroke-linecap="round" opacity=".75"/>
+  <circle cx="116" cy="132" r="8" fill="#55ccff"/>
+  <circle cx="396" cy="380" r="8" fill="#55ccff"/>
+  <path d="M194 150c0-19 21-31 38-21l139 86c16 10 16 33 0 43l-139 86c-17 10-38-2-38-21z" fill="url(#accent)" filter="url(#glow)"/>
+  <path d="M135 204c-24 0-43 19-43 43v18c0 24 19 43 43 43h30" fill="none" stroke="#69dcff" stroke-width="18" stroke-linecap="round"/>
+  <path d="M377 204h8c24 0 43 19 43 43v18c0 24-19 43-43 43h-18" fill="none" stroke="#2a98f0" stroke-width="18" stroke-linecap="round"/>
+  <rect x="101" y="411" width="310" height="18" rx="9" fill="#68d9ff" opacity=".9"/>
+</svg>
