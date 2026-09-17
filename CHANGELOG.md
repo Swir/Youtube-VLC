@@ -2,6 +2,24 @@
 
 All notable changes to VLCTube are documented here.
 
+## [3.1.0] - 2026-09-17
+
+### Restored
+- Classic VLC `--playlist-enqueue` behavior for launched media so new items do not unexpectedly replace the current VLC playlist.
+- Direct HTTP/HTTPS media passthrough for M3U8, MP4, WebM, MKV, MOV, AVI, TS and common audio resources without requiring yt-dlp page extraction.
+
+### Fixed
+- Custom VLCTube PNG icon is now applied to the running Tk window and bundled into the packaged EXE.
+- Icon build now produces both README/runtime PNG and multi-size Windows ICO assets.
+- Added a real `--smoke-gui` startup path.
+- Windows CI now constructs/processes the actual GUI in addition to the non-GUI self-test.
+- Release validation now tests the source GUI and packaged EXE GUI before publication.
+
+### Documentation
+- README now displays the custom application icon.
+- Added a classic-to-modern regression map comparing v3.1 with the original 2024 launcher.
+- Updated release validation and direct-media playback documentation.
+
 ## [3.0.0] - 2026-09-17
 
 ### Added
