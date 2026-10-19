@@ -21,6 +21,12 @@
 
 </div>
 
+## 📸 Screenshot
+
+![Youtube-VLC application screenshot](docs/screenshots/application.jpg)
+
+Initial VLCTube window on Windows, before adding video links.
+
 <p align="center"><img width="100%" src="assets/readme/progress-card.svg" alt="VLCTube product roadmap progress — N/A because no canonical measurable roadmap exists" /></p>
 
 **Product roadmap progress:** N/A — the repository has releases, tests and a changelog, but no canonical product-completion checklist or weighted roadmap. Release `v3.1.0` is therefore not presented as a percentage of an undefined future scope.
